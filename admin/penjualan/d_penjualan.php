@@ -48,23 +48,23 @@
 				<?php
 					include'../confiq/koneksi.php';
 					$no = 0;
-					$sql = mysqli_query($kon, "select * from penjualan order by tgl desc");
+					$sql = mysqli_query($kon, "select * from bazzar_penjualan order by tgl desc");
 					if(isset($_POST['tampil'])){
 						$tgl = $_POST['tgl'];
 						$bln = $_POST['bln'];
 						$thn = $_POST['thn'];
 						if(!empty($tgl) and empty($bln) and empty($thn)){
-							$sql = mysqli_query($kon, "select * from penjualan where day(tgl) = '$tgl'");
+							$sql = mysqli_query($kon, "select * from bazzar_penjualan where day(tgl) = '$tgl'");
 						}else if(empty($tgl) and !empty($bln) and empty($thn)){
-							$sql = mysqli_query($kon, "select * from penjualan where month(tgl) = '$bln'");
+							$sql = mysqli_query($kon, "select * from bazzar_penjualan where month(tgl) = '$bln'");
 						}else if(empty($tgl) and empty($bln) and !empty($thn)){
-							$sql = mysqli_query($kon, "select * from penjualan where year(tgl) = '$thn'");
+							$sql = mysqli_query($kon, "select * from bazzar_penjualan where year(tgl) = '$thn'");
 						}else if(!empty($tgl) and !empty($bln) and !empty($thn)){
 							$ahay = $thn."-".$bln."-".$tgl;
-							$sql = mysqli_query($kon, "select * from penjualan where tgl = '$ahay'");
+							$sql = mysqli_query($kon, "select * from bazzar_penjualan where tgl = '$ahay'");
 						}
 					}else{
-						$sql = mysqli_query($kon, "select * from penjualan order by tgl desc");
+						$sql = mysqli_query($kon, "select * from bazzar_penjualan order by tgl desc");
 					}
 					while($r=mysqli_fetch_array($sql)){
 						$no++;
@@ -100,7 +100,7 @@
 							</thead>
 							<tbody>
 								<?php
-									$det = mysqli_query($kon, "select id_penjualan, judul_buku, qty, dp.harga, (qty * dp.harga) as total from detail_penjualan dp, buku b where dp.id_buku=b.id_buku and dp.id_penjualan='$r[id_penjualan]'");
+									$det = mysqli_query($kon, "select id_penjualan, judul_buku, qty, dp.harga, (qty * dp.harga) as total from bazzar_detail_penjualan dp, bazzar_buku b where dp.id_buku=b.id_buku and dp.id_penjualan='$r[id_penjualan]'");
 										$totale = 0;
 									while($oi = mysqli_fetch_array($det)){
 										$totale = $totale + $oi['total'];

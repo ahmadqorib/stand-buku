@@ -1,6 +1,6 @@
 <?php
 	$id = $_GET['id'];
-	$sql = mysqli_query($kon, "select * from penerbit where id_penerbit='$id'");
+	$sql = mysqli_query($kon, "select * from bazzar_penerbit where id_penerbit='$id'");
 	$r = mysqli_fetch_assoc($sql);
 ?>
 <script src="../js/jquery-1.11.1.min.js"></script>

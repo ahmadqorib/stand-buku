@@ -25,7 +25,7 @@ $pdf->Cell(50,6,'Waktu',1,1);
 $pdf->SetFont('Arial','',10);
 
 include '../../confiq/koneksi.php';
-$penjualan = mysqli_query($kon, "select id_penjualan, tgl, waktu, sum(total) as tot from data_penjualan group by id_penjualan");
+$penjualan = mysqli_query($kon, "select id_penjualan, tgl, waktu, sum(total) as tot from bazzar_data_penjualan group by id_penjualan");
 $topen = 0;
 $jumlah = 0;
 $no = 1;
@@ -50,7 +50,7 @@ while ($r = mysqli_fetch_array($penjualan)){
 	$topen = $topen + $r['tot'];
 
 	$pdf->SetFont('Arial','',10);
-	$detail = mysqli_query($kon, "select * from data_penjualan where id_penjualan = '$r[id_penjualan]'");
+	$detail = mysqli_query($kon, "select * from bazzar_data_penjualan where id_penjualan = '$r[id_penjualan]'");
 	$tohar = 0;
 	while($rw=mysqli_fetch_array($detail)){
 		$pdf->Cell(10,6,'',0,0);

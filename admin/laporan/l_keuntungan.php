@@ -24,7 +24,7 @@ $pdf->Cell(57,6,'Tanggal',1,0);
 $pdf->Cell(57,6,'Waktu',1,1);
 
 include '../../confiq/koneksi.php';
-$penjualan = mysqli_query($kon, "select * from data_keuntungan group by id_penjualan");
+$penjualan = mysqli_query($kon, "select * from bazzar_data_keuntungan group by id_penjualan");
 $token = 0;
 $no = 1;
 while ($r = mysqli_fetch_array($penjualan)){
@@ -49,7 +49,7 @@ while ($r = mysqli_fetch_array($penjualan)){
 	$pdf->Cell(30,6,'Harga Jual',0,0);
 	$pdf->Cell(30,6,'Keuntungan',0,1);
 	
-	$detail = mysqli_query($kon, "select * from data_keuntungan where id_penjualan = '$r[id_penjualan]'");
+	$detail = mysqli_query($kon, "select * from bazzar_data_keuntungan where id_penjualan = '$r[id_penjualan]'");
 	$to_keuntungan = 0;
 	while($rw=mysqli_fetch_array($detail)){
 		$hdispen = $rw['harga'] - ($rw['harga'] * $rw['diskon_penerbit'] / 100);

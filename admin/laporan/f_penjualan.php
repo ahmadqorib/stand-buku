@@ -14,7 +14,7 @@
 						<select name="pen" class="form-control">
 							<option value="">Seluruh Penerbit</option>
 							<?php 
-								$sqlp = mysqli_query($kon, "select * from penerbit");
+								$sqlp = mysqli_query($kon, "select * from bazzar_penerbit");
 								while ($p = mysqli_fetch_array($sqlp)) {
 							?>
 							<option value="<?php echo $p['penerbit']; ?>"><?php echo $p['penerbit']; ?></option>

@@ -16,7 +16,7 @@
 				<tbody>
 					<?php
 						$no = 0;
-						$sql = mysqli_query($kon, "select * from penerbit");
+						$sql = mysqli_query($kon, "select * from bazzar_penerbit");
 						while($r=mysqli_fetch_array($sql)){
 							$no++;
 					?>

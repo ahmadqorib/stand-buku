@@ -12,16 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<style type="text/css">
-		#konten .isi{
-			padding: 0px 7px;
-		}
-
-		#konten .isi .tabele{
-			background-color: #fff;
-			font-weight: bold;
-			color: #333;
-			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-		}
+		
 	</style>
 </head>
 <body>
@@ -83,7 +74,7 @@
                             	</a>
                             </li>
                             <li><a href="laporan/l_keuntungan.php" target="_blank">
-                            		<span class="glyphicon glyphicon-tags"></span>
+                            		<span class="glyphicon glyphicon-usd"></span>
 									<span> Keuntungan</span>
                            	 	</a>	
                             </li>
@@ -102,7 +93,7 @@
 					</div>
 					<ul class="nav navbar-nav navbar-right menu">
 						<li>
-							<a href="?halaman=keranjang-belanja">
+							<a href="?halaman=keranjang-belanja" class="btn">
 								<span class="glyphicon glyphicon-shopping-cart ijo"></span>
 								<span class="text-success">Keranjang <span class="badge badgene">
 									<?php if(isset($_SESSION["shopping_cart"])) { echo count($_SESSION["shopping_cart"]); } else { echo '0';}?>
@@ -110,7 +101,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="logout.php">
+							<a data-href="logout.php" data-toggle="modal" data-target="#conkeluar" class="btn aaa">
 								<span class="glyphicon glyphicon-log-out text-danger"></span>
 								<span class="text-danger">Keluar</span>
 							</a>
@@ -174,6 +165,25 @@
 		</div>
 	</div>
 
+	<!-- Konfirmasi keluar -->
+	<div class="modal fade" id="conkeluar">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="text-danger">PERHATIAN!!!</h4>
+				</div>
+				<div class="modal-body">
+					Apakah anda yakin akan keluar dari aplikasi ?
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-danger btn-ok btn-sm">Keluar</a>
+					<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Konfirmasi stok habis -->
 	<div class="modal fade" id="KetStok">
 		<div class="modal-dialog">
@@ -210,7 +220,6 @@
 		</div>
 	</div>
 
-<!-- end konfirmasi hapus -->
 
     <script src="../js/jquery-1.12.0.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
@@ -242,6 +251,10 @@
     <script type="text/javascript">
 	    $(document).ready(function() {
 	        $('#conhapus').on('show.bs.modal', function(e) {
+	            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+	        });
+
+	        $('#conkeluar').on('show.bs.modal', function(e) {
 	            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	        });
 	    });

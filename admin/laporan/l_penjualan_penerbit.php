@@ -31,7 +31,7 @@ $pdf->Cell(55,6,'Waktu',1,1);
 $pdf->SetFont('Arial','',10);
 
 include '../../confiq/koneksi.php';
-$penjualan = mysqli_query($kon, "select * from data_penjualan_penerbit where penerbit like '%$_POST[pen]%' group by id_penjualan");
+$penjualan = mysqli_query($kon, "select * from bazzar_data_penjualan_penerbit where penerbit like '%$_POST[pen]%' group by id_penjualan");
 $topen = 0;
 $jumlah = 0;
 $no = 1;
@@ -55,7 +55,7 @@ while ($r = mysqli_fetch_array($penjualan)){
 	$pdf->Cell(40,6,'Harga Setelah Diskon',0,0);
 	$pdf->Cell(25,6,'Total',0,1);
 
-	$detail = mysqli_query($kon, "select * from data_penjualan_penerbit where id_penjualan = '$r[id_penjualan]' and penerbit like '%$_POST[pen]%'");
+	$detail = mysqli_query($kon, "select * from bazzar_data_penjualan_penerbit where id_penjualan = '$r[id_penjualan]' and penerbit like '%$_POST[pen]%'");
 	$tohar = 0;
 	while($rw=mysqli_fetch_array($detail)){
 		$hsd = $rw['harga'] - ($rw['harga'] * $rw['diskon'] / 100);

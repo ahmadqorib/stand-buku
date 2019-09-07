@@ -1,169 +1,208 @@
-		html, body{
-			margin: 0;
-			padding: 0;
-			background-color: #f2f2f2;
-			font-family: 'Poppins', sans-serif;
-		}
-		.navbar-btn {
-		    box-shadow: none;
-		    outline: none !important;
-		    border: none;
-		}
+html, body{
+	margin: 0;
+	padding: 0;
+	background-color: #f2f2f2;
+	font-family: 'Poppins', sans-serif;
+}
 
-		.ijo{
-			color: green;
-		}
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
 
-		.badgene{
-			background-color: #e68a00;
-			color: #FFF;
-		}
-		/* ---------------Buat sidebar---------- */
-		#sidebar{
-   			width: 250px;
-		    position: fixed;
-		    top: 0;
-		    left: 0;
-		    height: 100vh;
-		    z-index: 999;
-		    background: #7386D5;
-		    color: #fff;
-		    transition: all 0.3s;
-		}
+.ijo{
+	color: green;
+}
 
-		#sidebar.active {
-    		margin-left: -250px;
-		}
+.badgene{
+	background-color: #e68a00;
+	color: #FFF;
+}
 
-		#sidebar .profile {
-		    padding: 5px 20px;
-		    background: #6d7fcc;
-		    text-align: center;
-		    align-content: center;
-		}
+/*--------------Buat Scroll Bar----------*/
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
 
-		#sidebar .profile h5{
-		    background-color: #7386D5;
-		    padding: 10px;
-		    margin-top: -1px;
-		}
+::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: #F5F5F5;
+}
 
-		#sidebar ul{
-		    padding: 3px 0;
-		}
+::-webkit-scrollbar-thumb
+{
+	background-color: #7386D5;	
+	background-image: -webkit-linear-gradient(45deg,
+	                                          rgba(255, 255, 255, .2) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, .2) 50%,
+											  rgba(255, 255, 255, .2) 75%,
+											  transparent 75%,
+											  transparent)
+}
 
-		#sidebar ul li{
-			border-bottom: 2px solid #6d7fcc;
-		}
+/* ---------------Buat sidebar---------- */
+#sidebar{
+	width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+}
 
-		#sidebar ul li a {
-		    padding: 10px;
-		    font-size: 1.1em;
-		    display: block;
-		    text-decoration: none;
-		    color: #FFF;
-		}
+#sidebar.active {
+	margin-left: -250px;
+}
 
-		#sidebar ul li a:hover {
-		    color: #7386D5;
-		    background: #fff;
-		    transition: all 0.3s;
-		}
+#sidebar .profile {
+    padding: 5px 20px;
+    background: #6d7fcc;
+    text-align: center;
+    align-content: center;
+}
 
-		a[data-toggle="collapse"] {
-		    position: relative;
-		}
+#sidebar .profile h5{
+    background-color: #7386D5;
+    padding: 10px;
+    margin-top: -1px;
+}
 
-		a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-		    content: '\e259';
-		    display: block;
-		    position: absolute;
-		    right: 20px;
-		    font-family: 'Glyphicons Halflings';
-		    font-size: 0.6em;
-		}
-		a[aria-expanded="true"]::before {
-		    content: '\e260';
-		}
+#sidebar ul{
+    padding: 3px 0;
+}
+
+#sidebar ul li{
+	border-bottom: 2px solid #6d7fcc;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    text-decoration: none;
+    color: #FFF;
+}
+
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
 
 
-		ul ul a {
-		    font-size: 0.9em !important;
-		    padding-left: 30px !important;
-		    background: #6d7fcc;
-		}
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
 
 
-		/* ---------------Buat konten---------- */
-		#konten{
-			width: calc(100% - 250px);
-		    padding: 0px;
-		    min-height: 100vh;
-		    transition: all 0.3s;
-		    position: absolute;
-		    top: 0;
-		    right: 0;
-		}
+/* ---------------Buat konten---------- */
+#konten{
+	width: calc(100% - 250px);
+    padding: 0px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
-		#konten.active{
-    		width: 100%;
-		}
+#konten.active{
+	width: 100%;
+}
 
-		#konten .navbar{
-			border-radius: 0;
-			border: 0;
-			background-color: #fff;
-			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-		}
+#konten .navbar{
+	border-radius: 0;
+	border: 0;
+	background-color: #fff;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
 
-		.pering{
-			font-size: 12px;
-			position: absolute;
-		}
+#konten .isi{
+	padding: 0px 7px;
+}
 
-		/* buat dashboard */
-		.ngarep{
-			background: #7386D5;
-			padding: 5px;
-			border-radius: 3px;
-		}
+#konten .isi .tabele{
+	background-color: #fff;
+	font-weight: bold;
+	color: #333;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
 
-		.ngarep table .thead{
-			color: #7386D5;
-			font-size: 15px;
-		}
+.pering{
+	font-size: 12px;
+	position: absolute;
+}
 
-		.ngarep table tbody{
-			font-size: 15px;
-			background: #FFF;
-		}
+/* buat dashboard */
+.ngarep{
+	background: #7386D5;
+	padding: 5px;
+	border-radius: 3px;
+}
 
-		/* buat responsive pake mediaquery */
-		@media (max-width: 768px) {
-		    #sidebar {
-		        margin-left: -250px;
-		    }
-		    #sidebar.active {
-		        margin-left: 0;
-		    }
-		    #konten {
-		        width: 100%;
-		    }
-		    #konten .navbar{
-		    	padding: 5px;
-		    }
-		    #konten.active {
-		        width: calc(100% - 250px);
-		    }
-		    #sidebarCollapse span {
-		        display: none;
-		    }
-		}
+.ngarep table .thead{
+	color: #7386D5;
+	font-size: 15px;
+}
 
-		/* buat profile e */
-		.bulat{
-			border-radius: 100em;
-			border:2px solid #fff;
-			width: 200px;
-			height: 200px;
-		}
+.ngarep table tbody{
+	font-size: 15px;
+	background: #FFF;
+}
+
+/* buat responsive pake mediaquery */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #konten {
+        width: 100%;
+    }
+    #konten .navbar{
+    	padding: 5px;
+    }
+    #konten.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+/* buat profile e */
+.bulat{
+	border-radius: 100em;
+	border:2px solid #fff;
+	width: 200px;
+	height: 200px;
+}

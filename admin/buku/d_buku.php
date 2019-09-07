@@ -24,9 +24,9 @@
 					include'../confiq/koneksi.php';
 					$no = 0;
 
-					$sql = mysqli_query($kon, "select * from buku order by judul_buku asc");
+					$sql = mysqli_query($kon, "select * from bazzar_buku order by judul_buku asc");
 					while($r=mysqli_fetch_array($sql)){
-						$pen = mysqli_query($kon, "select * from penerbit where id_penerbit='$r[penerbit]'");
+						$pen = mysqli_query($kon, "select * from bazzar_penerbit where id_penerbit='$r[penerbit]'");
 						$p = mysqli_fetch_array($pen);
 						$diskon = $p['diskon'];
 
@@ -62,7 +62,7 @@
 							class="btn btn-xs btn-success add_to_cart"/><span class="glyphicon glyphicon-shopping-cart"></span> beli</button>
 						<a href="?halaman=edit_buku&id=<?php echo $r['id_buku']; ?>" class="btn btn-xs btn-warning" style="margin-bottom: 5px">
 							<span class="glyphicon glyphicon-edit"></span> edit</a>
-						<a data-href="buku/a_buku.php?hapus_buku&id=<?php echo $r['id_buku']; ?>" class="btn btn-xs btn-danger"  style="margin-bottom: 5px"
+						<a data-href="buku/a_buku.php?hapus_buku&id=<?php echo $r['id_buku']; ?>" class="btn btn-xs btn-danger"  	style="margin-bottom: 5px"
 							data-toggle="modal" data-target="#conhapus"><span class="glyphicon glyphicon-remove"></span> hapus</a>
 					</td>
 				</tr>

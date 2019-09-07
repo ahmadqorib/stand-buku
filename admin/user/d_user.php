@@ -18,7 +18,7 @@
 				<?php
 					include'../confiq/koneksi.php';
 					$no = 0;
-					$sql = mysqli_query($kon, "select * from user order by nama asc");
+					$sql = mysqli_query($kon, "select * from bazzar_user order by nama asc");
 					while($r=mysqli_fetch_array($sql)){
 						$no++;
 				?>

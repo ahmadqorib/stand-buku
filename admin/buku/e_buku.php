@@ -1,8 +1,8 @@
 <?php
 	$id = $_GET['id'];
-	$sql = mysqli_query($kon, "select * from buku where id_buku='$id'");
+	$sql = mysqli_query($kon, "select * from bazzar_buku where id_buku='$id'");
 	$r = mysqli_fetch_assoc($sql);
-	$pen = mysqli_query($kon, "select * from penerbit where id_penerbit='$r[penerbit]'");
+	$pen = mysqli_query($kon, "select * from bazzar_penerbit where id_penerbit='$r[penerbit]'");
 	$p = mysqli_fetch_array($pen);
 ?>
 <script src="../js/jquery-1.11.1.min.js"></script>
@@ -28,15 +28,21 @@
 			<div class="form-group">
 				<label class="control-label col-md-2">Penerbit :</label>
 				<div class="col-md-4">
-					<select name="penerbit" class="form-control input-sm">
+					<select name="penerbit" class="form-control input-sm" onchange="changeValue(this.value)">
 						<option value="<?php echo $r['penerbit']; ?>"><?php echo $p['penerbit']; ?></option>
-						<option value="">Masukkan Penerbit</option>
+						<option value="">Pilih Penerbit Lain</option>
 						<?php 
-							$sq = mysqli_query($kon, "select * from penerbit order by penerbit");
-							while($d=mysqli_fetch_array($sq)){
+							$jsArray = "var dtDiskon = new Array();"; 
+							$cek = $r['penerbit'];
+							$sq = mysqli_query($kon, "select * from bazzar_penerbit order by penerbit");
+							while($ro=mysqli_fetch_array($sq)){
 						?>
-							<option value="<?php echo $d['id_penerbit']; ?>"><?php echo $d['penerbit']; ?></option>
-						<?php } ?>
+							<option value="<?php echo $ro['id_penerbit']; ?>"><?php echo $ro['penerbit']; ?></option>
+						<?php 
+							$jsArray .= "dtDiskon['" . $ro['id_penerbit'] . "'] = 
+								{diskon:'Maksimal diskon yang diberikan : " . addslashes($ro['diskon']) . " %'};\n";
+							} 
+						?>
 					</select>
 				</div>
 				<div class="col-md-6"></div>
@@ -53,7 +59,9 @@
 				<div class="col-md-4">
 					<input type="text" name="diskon" class="form-control input-sm" placeholder="masukkan diskon..." value="<?php echo $r['diskon']; ?>">
 				</div>
-				<div class="col-md-6"></div>
+				<div class="col-md-3">
+					<input type="text" disabled="" id="dsk" class="form-control input-sm" value="Maksimal diskon yang diberikan : <?php echo $p['diskon']; ?> %"> 
+				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-md-2">Harga :</label>
@@ -88,7 +96,12 @@
 		</form>
 	</div>
 </div>
-
+<script type="text/javascript">    
+    <?php echo $jsArray; ?>  
+    function changeValue(penerbit){  
+    	document.getElementById('dsk').value = dtDiskon[penerbit].diskon;   
+    };  
+</script> 
 <script type="text/javascript">  
   $('form').validate({
         rules: {
@@ -99,10 +112,6 @@
               	required:true
             },
             penerbit:{
-              	required:true
-            },
-            thn:{
-            	digits:true,
               	required:true
             },
             diskon:{
@@ -127,10 +136,6 @@
             },
             penerbit:{
               	required: "<span class='pering'>Penerbit tidak boleh kosong !!</span>",
-            },
-            thn:{
-              	required: "<span class='pering'>Tahun terbit tidak boleh kosong !!</span>",
-              	digits: "<span class='pering'>Tolong masukkan tahun dengan angka !!"
             },
             diskon:{
               	required: "<span class='pering'>Diskon tidak boleh kosong !!</span>",

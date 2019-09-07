@@ -4,7 +4,7 @@
 	if(isset($_POST["simpanK"])){  
 	   	$tgl = date("Y-m-d");
 	   	$wkt = date("H:i:s");
-	   	$simpan = "insert into penjualan (tgl, waktu) values ('$tgl', '$wkt')";
+	   	$simpan = "insert into bazzar_penjualan (tgl, waktu) values ('$tgl', '$wkt')";
 	   	$order_id = "";  
 
 	   	if(mysqli_query($kon, $simpan))  {  
@@ -16,17 +16,17 @@
 	   	$cek = 0;
 
 	   	foreach($_SESSION["shopping_cart"] as $keys => $values){    
-			$simpan_detail = "INSERT INTO detail_penjualan (id_penjualan, id_buku, qty, harga, diskon) 
+			$simpan_detail = "INSERT INTO bazzar_detail_penjualan (id_penjualan, id_buku, qty, harga, diskon) 
 				VALUES ('".$id_penjualan."', '".$values["product_id"]."', '".$values["product_quantity"]."',
 						 '".$values["product_hdiskon"]."', '".$values["product_diskon"]."')";
 			$simpanB = mysqli_query($kon, $simpan_detail);
 			if($simpanB){
 				$stok = $values['product_quantity'];
 				$idne = $values['product_id'];
-				$st = mysqli_query($kon, "select * from buku where id_buku='$idne'");
+				$st = mysqli_query($kon, "select * from bazzar_buku where id_buku='$idne'");
 				$c = mysqli_fetch_array($st);
 				$jstok = $c['jumlah'] - $stok;
-				mysqli_query($kon, "update buku set jumlah = '$jstok' where id_buku='$idne'");
+				mysqli_query($kon, "update bazzar_buku set jumlah = '$jstok' where id_buku='$idne'");
 				$cek++;
 			}
 	   	}   

@@ -22,10 +22,10 @@
 				<label class="control-label col-md-2">Penerbit :</label>
 				<div class="col-md-4">
 					<select name="penerbit" class="form-control input-sm" onchange="changeValue(this.value)">
-						<option value="">Masukkan Penerbit</option>
+						<option value="">Pilih Penerbit</option>
 						<?php 
 							$jsArray = "var dtDiskon = new Array();"; 
-							$sql = mysqli_query($kon, "select * from penerbit order by penerbit");
+							$sql = mysqli_query($kon, "select * from bazzar_penerbit order by penerbit");
 							while($r=mysqli_fetch_array($sql)){
 						?>
 							<option value="<?php echo $r['id_penerbit']; ?>"><?php echo $r['penerbit']; ?></option>
@@ -105,10 +105,6 @@
             penerbit:{
               	required:true
             },
-            thn:{
-            	digits:true,
-              	required:true
-            },
             diskon:{
             	digits:true,
             	required:true
@@ -134,10 +130,6 @@
             },
             penerbit:{
               	required: "<span class='pering'>Penerbit tidak boleh kosong !!</span>",
-            },
-            thn:{
-              	required: "<span class='pering'>Tahun terbit tidak boleh kosong !!</span>",
-              	digits: "<span class='pering'>Tolong masukkan tahun dengan angka !!"
             },
             diskon:{
               	required: "<span class='pering'>Diskon tidak boleh kosong !!</span>",
